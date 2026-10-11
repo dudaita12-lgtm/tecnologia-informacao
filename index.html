@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnologia e Informação | Explore o Futuro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --azul-escuro: #102a43;
+            --azul: #176b87;
+            --turquesa: #19a7a8;
+            --fundo: #f2f7fb;
+            --texto: #243b53;
+            --branco: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--fundo);
+            color: var(--texto);
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 28px 20px;
+            background: var(--azul-escuro);
+            color: var(--branco);
+        }
+
+        .barra-topo {
+            max-width: 1050px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .marca {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .marca span {
+            color: #58e0d1;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        nav a {
+            color: var(--branco);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #58e0d1;
+        }
+
+        .hero {
+            padding: 68px 20px;
+            background: linear-gradient(135deg, #102a43, #176b87);
+            color: var(--branco);
+            text-align: center;
+        }
+
+        .hero-conteudo {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .etiqueta {
+            display: inline-block;
+            padding: 6px 13px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255,255,255,.4);
+            border-radius: 20px;
+            font-size: .9rem;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.15;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 0 auto 25px;
+            font-size: 1.08rem;
+        }
+
+        .botao {
+            display: inline-block;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background: var(--turquesa);
+            color: #062d35;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform .2s, background .2s;
+        }
+
+        .botao:hover {
+            background: #58e0d1;
+            transform: translateY(-2px);
+        }
+
+        main {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 35px 20px 55px;
+        }
+
+        section {
+            margin-bottom: 35px;
+        }
+
+        .titulo-secao {
+            margin-bottom: 10px;
+            color: var(--azul-escuro);
+            font-size: 1.8rem;
+        }
+
+        .introducao {
+            margin-bottom: 22px;
+            max-width: 800px;
+        }
+
+        .cartoes {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .cartao {
+            padding: 22px;
+            background: var(--branco);
+            border: 1px solid #d9e5ee;
+            border-radius: 13px;
+            box-shadow: 0 5px 16px rgba(16, 42, 67, .06);
+        }
+
+        .icone {
+            display: inline-grid;
+            place-items: center;
+            width: 48px;
+            height: 48px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            background: #e0f7f5;
+            font-size: 1.6rem;
+        }
+
+        .cartao h3 {
+            margin-bottom: 8px;
+            color: var(--azul);
+        }
+
+        .painel-interativo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .painel {
+            padding: 26px;
+            background: var(--branco);
+            border: 1px solid #d9e5ee;
+            border-radius: 13px;
+            box-shadow: 0 5px 16px rgba(16, 42, 67, .06);
+        }
+
+        label {
+            display: block;
+            margin: 14px 0 6px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #b8cbd8;
+            border-radius: 7px;
+            font: inherit;
+            background: white;
+        }
+
+        input:focus, select:focus {
+            outline: 2px solid var(--turquesa);
+            border-color: var(--turquesa);
+        }
+
+        .painel .botao {
+            width: 100%;
+            margin-top: 16px;
+        }
+
+        .resultado {
+            min-height: 85px;
+            margin-top: 16px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #eaf8f7;
+            border-left: 4px solid var(--turquesa);
+        }
+
+        .resultado.erro {
+            background: #fff0ef;
+            border-left-color: #d64545;
+            color: #8a2020;
+        }
+
+        .curiosidade {
+            margin-top: 15px;
+            padding: 16px;
+            border-radius: 8px;
+            background: #edf3f8;
+        }
+
+        footer {
+            padding: 24px 20px;
+            text-align: center;
+            background: var(--azul-escuro);
+            color: var(--branco);
+        }
+
+        footer p + p {
+            margin-top: 5px;
+            color: #c9d9e6;
+            font-size: .9rem;
+        }
+
+        @media (max-width: 760px) {
+            .cartoes {
+                grid-template-columns: 1fr;
+            }
+
+            .painel-interativo {
+                grid-template-columns: 1fr;
+            }
+
+            .barra-topo {
+                justify-content: center;
+                text-align: center;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 50px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="barra-topo">
+            <div class="marca">T&I <span>●</span> Tecnologia</div>
+            <nav aria-label="Navegação principal">
+                <a href="#sobre">Sobre</a>
+                <a href="#inovacoes">Inovações</a>
+                <a href="#interativo">Experimente</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-conteudo">
+            <span class="etiqueta">Conhecimento em movimento</span>
+            <h1>Tecnologia e Informação</h1>
+            <p>
+                Descubra como as ideias, os dados e as ferramentas digitais
+                transformam a maneira como vivemos, estudamos e trabalhamos.
+            </p>
+            <a class="botao" href="#interativo">Explore a página</a>
+        </div>
+    </section>
+
+    <main>
+        <section id="sobre">
+            <h2 class="titulo-secao">O que é tecnologia da informação?</h2>
+            <p class="introducao">
+                Tecnologia da Informação (TI) é o uso de computadores, programas,
+                redes e sistemas para criar, armazenar, processar e compartilhar
+                informações. Ela está presente em atividades cotidianas, empresas,
+                escolas, hospitais e muitos outros ambientes.
+            </p>
+        </section>
+
+        <section id="inovacoes">
+            <h2 class="titulo-secao">Inovações que fazem a diferença</h2>
+            <p class="introducao">
+                Algumas tecnologias ajudam a resolver problemas, melhorar processos
+                e criar novas possibilidades para a sociedade.
+            </p>
+
+            <div class="cartoes">
+                <article class="cartao">
+                    <div class="icone" aria-hidden="true">🤖</div>
+                    <h3>Inteligência Artificial</h3>
+                    <p>Ajuda a analisar informações, reconhecer padrões e automatizar tarefas.</p>
+                </article>
+
+                <article class="cartao">
+                    <div class="icone" aria-hidden="true">☁️</div>
+                    <h3>Computação em Nuvem</h3>
+                    <p>Permite guardar arquivos e acessar serviços pela internet em diferentes dispositivos.</p>
+                </article>
+
+                <article class="cartao">
+                    <div class="icone" aria-hidden="true">📱</div>
+                    <h3>Aplicativos</h3>
+                    <p>Facilitam a comunicação, os estudos, os pagamentos e a organização do dia a dia.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="interativo">
+            <h2 class="titulo-secao">Experimente a tecnologia</h2>
+            <p class="introducao">
+                Preencha seu nome e escolha uma área de interesse. O JavaScript
+                vai validar os dados e mostrar uma mensagem personalizada.
+            </p>
+
+            <div class="painel-interativo">
+                <div class="painel">
+                    <h3>Descubra seu interesse</h3>
+                    <form id="formulario">
+                        <label for="nome">Seu nome</label>
+                        <input
+                            type="text"
+                            id="nome"
+                            name="nome"
+                            placeholder="Digite seu nome"
+                            maxlength="50"
+                            required
+                        >
+
+                        <label for="area">Área de tecnologia favorita</label>
+                        <select id="area" name="area" required>
+                            <option value="">Selecione uma opção</option>
+                            <option value="Inteligência Artificial">Inteligência Artificial</option>
+                            <option value="Desenvolvimento de Sites">Desenvolvimento de Sites</option>
+                            <option value="Segurança Digital">Segurança Digital</option>
+                            <option value="Robótica e Automação">Robótica e Automação</option>
+                            <option value="Computação em Nuvem">Computação em Nuvem</option>
+                        </select>
+
+                        <button class="botao" type="submit">Mostrar resultado</button>
+                    </form>
+
+                    <div id="resultado" class="resultado" aria-live="polite">
+                        Sua mensagem personalizada aparecerá aqui.
+                    </div>
+                </div>
+
+                <div class="painel">
+                    <h3>Você sabia?</h3>
+                    <p>
+                        A tecnologia está em constante evolução. Clique no botão
+                        para descobrir uma curiosidade diferente.
+                    </p>
+
+                    <div id="curiosidade" class="curiosidade" aria-live="polite">
+                        Clique no botão para começar!
+                    </div>
+
+                    <button class="botao" id="botaoCuriosidade" type="button">
+                        Ver curiosidade
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Tecnologia e Informação</p>
+        <p>Projeto educativo desenvolvido com HTML, CSS e JavaScript.</p>
+    </footer>
+
+    <script>
+        // Variável com curiosidades sobre tecnologia
+        const curiosidades = [
+            "A internet conecta computadores e dispositivos em todo o mundo.",
+            "A computação em nuvem permite acessar arquivos sem mantê-los apenas no seu computador.",
+            "A inteligência artificial pode ajudar a identificar padrões em grandes conjuntos de dados.",
+            "HTML organiza o conteúdo, CSS cuida da aparência e JavaScript adiciona interatividade."
+        ];
+
+        // Função que valida os campos e altera o conteúdo da página
+        function mostrarResultado(evento) {
+            evento.preventDefault();
+
+            const nome = document.getElementById("nome").value.trim();
+            const area = document.getElementById("area").value;
+            const resultado = document.getElementById("resultado");
+
+            if (nome.length < 2) {
+                resultado.className = "resultado erro";
+                resultado.textContent = "Por favor, digite um nome com pelo menos 2 caracteres.";
+                return;
+            }
+
+            if (area === "") {
+                resultado.className = "resultado erro";
+                resultado.textContent = "Selecione uma área de tecnologia.";
+                return;
+            }
+
+            resultado.className = "resultado";
+            resultado.textContent = "Olá, " + nome + "! Que legal saber que você gosta de " +
+                area + ". Continue explorando e aprendendo sobre tecnologia!";
+        }
+
+        // Evento de envio do formulário
+        document.getElementById("formulario").addEventListener("submit", mostrarResultado);
+
+        // Variável que controla a curiosidade exibida
+        let indiceCuriosidade = 0;
+
+        // Função que altera a curiosidade ao clicar no botão
+        function mostrarCuriosidade() {
+            const elemento = document.getElementById("curiosidade");
+            elemento.textContent = curiosidades[indiceCuriosidade];
+
+            indiceCuriosidade++;
+
+            if (indiceCuriosidade >= curiosidades.length) {
+                indiceCuriosidade = 0;
+            }
+        }
+
+        // Evento de clique do botão de curiosidade
+        document.getElementById("botaoCuriosidade").addEventListener("click", mostrarCuriosidade);
+    </script>
+</body>
+</html>
